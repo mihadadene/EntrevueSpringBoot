@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS acteur, film;
+
+CREATE TABLE film (
+  id_film INT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(250) NOT NULL,
+  description VARCHAR(3500) NOT NULL
+);
+
+CREATE TABLE acteur (
+  id_acteur INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(250) NOT NULL,
+  prenom VARCHAR(250) NOT NULL,
+  id_film INT
+);
+
+ALTER TABLE acteur
+ADD CONSTRAINT FK_ActeurFilm
+FOREIGN KEY (id_film) REFERENCES film(id_film);
+
+
