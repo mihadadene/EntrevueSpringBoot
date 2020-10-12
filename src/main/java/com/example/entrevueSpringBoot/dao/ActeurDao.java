@@ -8,7 +8,5 @@ public interface ActeurDao {
 
     default int insertActeur(Acteur acteur){
         return insertActeur(acteur);
-
     }
-
 }
