@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # EntrevueSpringBoot
 =======
 # Test Analyste-Programmeur Desjardins (Java Spring Boot)
@@ -142,4 +141,3 @@ Une fois terminer, veuillez créer un fichier **zip** du projet ou créer un nou
 Bonne chance!
 
 <img src="Desjardins_Logo.png" width="20%" height="20%">
->>>>>>> e332dcf688c988abc85ec7898bfa911003d5ef7f
