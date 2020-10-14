@@ -1,33 +1,45 @@
 package com.example.entrevueSpringBoot.model;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import javax.persistence.*;
+import java.util.List;
 
+@Table(name = "film")
+@Data
+@Builder
+@Entity
 public class Film {
-    private long id;
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column(name = "idFilm", nullable = false, updatable = false)
+    private long idFilm;
+
+    @Column(name = "titre", nullable = false)
     private String titre;
+
+    @Column(name = "description", nullable = false)
     private String description;
-    private ArrayList<Acteur> acteurs;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idActeur")
+    private List<Acteur> acteurs;
 
-    public Film(@JsonProperty("id") long id,
+    public Film(@JsonProperty("idFilm") long idFilm,
                 @JsonProperty("titre") String titre,
                 @JsonProperty("description") String description,
-                @JsonProperty("acteurs") ArrayList<Acteur> acteurs )
+                @JsonProperty("acteurs") List<Acteur> acteurs )
     {
-        this.id = id;
+        this.idFilm = idFilm;
         this.titre = titre;
         this.description = description;
         this.acteurs = acteurs;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public long getIdFilm() {
+        return idFilm;
     }
 
     public String getTitre() {
@@ -38,35 +50,23 @@ public class Film {
         return description;
     }
 
-    public void setTitre(String titre){
+    public void setIdFilm(long idFilm) {
+        this.idFilm = idFilm;
+    }
+
+    public void setTitre(String titre) {
         this.titre = titre;
     }
-    public void setDescription(String description){
+
+    public void setDescription(String description) {
         this.description = description;
     }
-    public Optional<Acteur> getActeursById_acteur(long id_acteur){
-      return acteurs.stream().filter(acteur ->
-              acteur.getId() == id_acteur)
-              .findFirst();
+
+    public void setActeurs(List<Acteur> acteurs) {
+        this.acteurs = acteurs;
     }
 
- /*   public Optional<Acteur> getActeursById_film(long id_film){
-        return acteurs.stream().filter(acteur ->
-                acteur.getId_film() == id_film)
-                .findFirst();
-    }*/
-
-     public int insertActeur(Acteur acteur) {
-          acteurs.add(new Acteur(acteur.getId(), acteur.getNom(), acteur.getPrenom(), acteur.getId_film()));
-         return 1;
-    }
-
-    public boolean addActeur(Acteur acteur) {
-        return acteurs.add(acteur);
-    }
-
-    public ArrayList<Acteur> getActeurs(){
-        return acteurs;
-    }
-
+    public List<Acteur> getActeurs() {
+      return acteurs;
+   }
 }

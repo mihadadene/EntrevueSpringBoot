@@ -1,30 +1,46 @@
 package com.example.entrevueSpringBoot.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Table(name = "acteur")
+@Data
+@Builder
+@Entity
 public class Acteur {
 
-    private long id;
-    private String nom;
-    private String prenom;
-    private long id_film;
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column(name = "idActeur", nullable = false, updatable = false)
+    private long idActeur;
 
-    public Acteur(@JsonProperty("id") long id,
+    @Column(name = "nom", nullable = false)
+    private String nom;
+
+    @Column(name = "prenom", nullable = false)
+    private String prenom;
+
+    public Acteur(@JsonProperty("idActeur") long idActeur,
                   @JsonProperty("nom") String nom,
-                  @JsonProperty("prenom") String prenom,
-                  @JsonProperty("id_film") long id_film)
+                  @JsonProperty("prenom") String prenom)
+
     {
-        this.id = id;
+        this.idActeur = idActeur;
         this.nom = nom;
         this.prenom = prenom;
-        this.id_film = id_film;
     }
 
-    public long getId() {
-        return id;
+    public long getIdActeur() {
+        return idActeur;
     }
-    public void setId(long id) {
-        this.id = id;
+
+    public void setIdActeur(long idActeur) {
+        this.idActeur = idActeur;
     }
+
     public String getNom() {
         return nom;
     }
@@ -36,15 +52,9 @@ public class Acteur {
     public String getPrenom() {
         return prenom;
     }
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    public long getId_film() {
-        return id_film;
-    }
-
-    public void setId_film(long id_film) {
-        this.id_film = id_film;
-    }
 }

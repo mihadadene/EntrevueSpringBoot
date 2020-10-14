@@ -2,7 +2,6 @@ package com.example.entrevueSpringBoot.dao;
 
 import com.example.entrevueSpringBoot.model.Film;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +17,11 @@ public class FilmDataAccessService implements FilmDao {
         return 1;
     }
 
-/*    @Override
+    @Override
     public int insertFilm(Film film) {
         films.add(film);
         return 1;
-    }*/
+    }
 
     @Override
     public List<Film> selectAllFilm() {
@@ -32,7 +31,7 @@ public class FilmDataAccessService implements FilmDao {
     @Override
     public Optional<Film> selectFilmById(long id) {
         return films.stream().filter(film ->
-                    film.getId() == id)
+                    film.getIdFilm() == id)
                         .findFirst();
     }
 
