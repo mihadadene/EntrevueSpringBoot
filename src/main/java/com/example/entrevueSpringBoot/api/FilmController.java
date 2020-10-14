@@ -1,10 +1,11 @@
 package com.example.entrevueSpringBoot.api;
 import com.example.entrevueSpringBoot.model.Film;
 import com.example.entrevueSpringBoot.service.FilmService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import lombok.NonNull;
+
 import java.util.List;
 
 @RequestMapping(value="api/film")
@@ -20,12 +21,12 @@ public class FilmController {
 
     @PostMapping
     public void addFilm(@Validated @NonNull @RequestBody Film film){
-        filmService.addFilm(film);
+        filmService.insertFilm(film);
     }
 
     @GetMapping
     public List<Film> getAllFilm(){
-        return filmService.getAllFilm();
+        return filmService.getAllfilm();
     }
 
     @GetMapping(path="{id}")
@@ -33,7 +34,7 @@ public class FilmController {
         return filmService.getFilmById(id).orElse(null);
     }
 
-    @DeleteMapping(path="{id}")
+/*    @DeleteMapping(path="{id}")
     public void deleteFilmById(@PathVariable("id") long id){
         filmService.deleteFilm(id);
     }
@@ -41,5 +42,5 @@ public class FilmController {
     @PutMapping(path="{id}")
     public void updateFilm(@PathVariable("id") long id, @Validated @NonNull @RequestBody Film filmToUpdate){
         filmService.updateFilm(id, filmToUpdate);
-    }
+    }*/
 }

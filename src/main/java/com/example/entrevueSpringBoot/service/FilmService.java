@@ -1,41 +1,38 @@
 package com.example.entrevueSpringBoot.service;
 
-import com.example.entrevueSpringBoot.dao.FilmDao;
 import com.example.entrevueSpringBoot.model.Film;
+import com.example.entrevueSpringBoot.repository.ActeurRepository;
+import com.example.entrevueSpringBoot.repository.FilmRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class FilmService {
 
-    private final FilmDao filmDao;
+    private final FilmRepository filmRepository;
 
     @Autowired
-    public FilmService(@Qualifier("filmDao") FilmDao filmDao) {
-        this.filmDao = filmDao;
+    public FilmService(ActeurRepository acteurRepository, FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
     }
 
-    public int addFilm(Film film){
-        return filmDao.insertFilm(film);
+    public Optional<Film> getFilmById(Long idFilm){
+        return filmRepository.findById(idFilm);
     }
 
-    public List<Film> getAllFilm(){
-        return filmDao.selectAllFilm();
+    public List<Film> getAllfilm(){
+        return (List<Film>) filmRepository.findAll();
     }
 
-    public Optional<Film> getFilmById(long id){
-        return filmDao.selectFilmById(id);
+    public int insertFilm(Film film){
+        filmRepository.save(film);
+        return 1;
     }
 
-    public int deleteFilm(long id){
-        return filmDao.deleteFilmById(id);
-    }
 
-    public int updateFilm(long id, Film newFilm){
-        return filmDao.updateFilmById(id, newFilm);
-    }
 }
