@@ -1,32 +1,32 @@
 package com.example.entrevueSpringBoot.api;
 import com.example.entrevueSpringBoot.model.Film;
 import com.example.entrevueSpringBoot.service.FilmService;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(value="api/film")
 @RestController
+@RequestMapping(value="api/film")
 public class FilmController {
 
-    private final FilmService filmService;
-
     @Autowired
+    private FilmService filmService;
+
     public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
 
-    @PostMapping
-    public void addFilm(@Validated @NonNull @RequestBody Film film){
-        filmService.insertFilm(film);
+    @GetMapping
+    public List<Film> getAllFilms(){
+        return filmService.getAllfilm();
     }
 
-    @GetMapping
-    public List<Film> getAllFilm(){
-        return filmService.getAllfilm();
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public int createFilm(@RequestBody Film film){
+        return filmService.insertFilm(film);
     }
 
     @GetMapping(path="{id}")
@@ -34,13 +34,9 @@ public class FilmController {
         return filmService.getFilmById(id).orElse(null);
     }
 
-/*    @DeleteMapping(path="{id}")
+    @DeleteMapping(path="{id}")
     public void deleteFilmById(@PathVariable("id") long id){
-        filmService.deleteFilm(id);
+        filmService.deleteFilmById(id);
     }
 
-    @PutMapping(path="{id}")
-    public void updateFilm(@PathVariable("id") long id, @Validated @NonNull @RequestBody Film filmToUpdate){
-        filmService.updateFilm(id, filmToUpdate);
-    }*/
 }

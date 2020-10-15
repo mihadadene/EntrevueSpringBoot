@@ -16,8 +16,7 @@ public class Acteur {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column(name = "id_acteur", nullable = false, updatable = false)
-    private long id_acteur;
+    private long idActeur;
 
     @Column(name = "nom", nullable = false)
     private String nom;

@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class FilmService {
 
-    private final FilmRepository filmRepository;
+    private FilmRepository filmRepository;
 
     @Autowired
     public FilmService(ActeurRepository acteurRepository, FilmRepository filmRepository) {
@@ -34,5 +34,9 @@ public class FilmService {
         return 1;
     }
 
+    public int deleteFilmById(long id){
+        filmRepository.deleteById(id);
+        return 1;
+    }
 
 }

@@ -3,6 +3,7 @@ package com.example.entrevueSpringBoot.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "film")
@@ -17,8 +18,7 @@ public class Film {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column(name = "id_film", nullable = false, updatable = false)
-    private long id_film;
+    private long idFilm;
 
     @Column(name = "titre", nullable = false)
     private String titre;
@@ -26,8 +26,8 @@ public class Film {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_acteur")
-    private List<Acteur> acteurs;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_film", referencedColumnName="idFilm")
+    private List<Acteur> acteurs = new ArrayList<>();
 
 }

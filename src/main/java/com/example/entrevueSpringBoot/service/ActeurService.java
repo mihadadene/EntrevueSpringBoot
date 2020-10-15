@@ -10,7 +10,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class ActeurService {
-    private final ActeurRepository acteurRepository;
+    private ActeurRepository acteurRepository;
 
     public ActeurService(ActeurRepository acteurRepository) {
         this.acteurRepository = acteurRepository; 
