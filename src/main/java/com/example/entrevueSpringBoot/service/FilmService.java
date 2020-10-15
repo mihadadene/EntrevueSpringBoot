@@ -1,6 +1,6 @@
 package com.example.entrevueSpringBoot.service;
 
-import com.example.entrevueSpringBoot.model.Film;
+import com.example.entrevueSpringBoot.entity.Film;
 import com.example.entrevueSpringBoot.repository.ActeurRepository;
 import com.example.entrevueSpringBoot.repository.FilmRepository;
 import lombok.extern.slf4j.Slf4j;

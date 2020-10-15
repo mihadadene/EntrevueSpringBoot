@@ -1,4 +1,4 @@
-package com.example.entrevueSpringBoot.model;
+package com.example.entrevueSpringBoot.entity;
 
 import lombok.*;
 

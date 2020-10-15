@@ -14,7 +14,7 @@ CREATE TABLE acteur (
 );
 
 ALTER TABLE acteur
-ADD CONSTRAINT FK_ActeurFilm
+ADD CONSTRAINT fk_acteur_film
 FOREIGN KEY (id_film) REFERENCES film(id_film);
 
 
