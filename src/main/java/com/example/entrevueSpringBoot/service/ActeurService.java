@@ -1,6 +1,6 @@
 package com.example.entrevueSpringBoot.service;
 
-import com.example.entrevueSpringBoot.model.Acteur;
+import com.example.entrevueSpringBoot.entity.Acteur;
 import com.example.entrevueSpringBoot.repository.ActeurRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
